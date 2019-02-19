@@ -3,21 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TatekanController : MonoBehaviour {
-    public int NTatekanMax = 5;
-    private int n_tatekans = 0;
+    public int InitialScore = 250;
+    public int ScorePerFrame = 1;
 
-	public void IncreaseTatekan()
+    private ScoreController1P sc1;
+    void Start()
     {
-        if(n_tatekans < NTatekanMax) n_tatekans++;
+        var sm = GameObject.Find("ScoreManager1P");
+        sc1 = sm.GetComponent<ScoreController1P>();
+        sc1.AddScore(InitialScore);
     }
 
-    public void DecreaseTatekan()
+    void Update()
     {
-        if(n_tatekans > 0) n_tatekans--;
-    }
-
-    public bool IsFull()
-    {
-        return n_tatekans >= NTatekanMax;
+        sc1.AddScore(ScorePerFrame);
     }
 }
