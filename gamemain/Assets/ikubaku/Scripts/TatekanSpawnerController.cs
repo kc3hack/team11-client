@@ -5,6 +5,7 @@ using UnityEngine;
 public class TatekanSpawnerController : MonoBehaviour {
     public GameObject TatekanBig;
     public GameObject[] SpawnTargets;
+    public TatekanController TatekanMController;
 
     private int spawn_idx = 0;
     private bool is_fire1_pressed = false;
@@ -19,12 +20,16 @@ public class TatekanSpawnerController : MonoBehaviour {
 		if(!is_fire1_pressed && Input.GetAxis("Fire1") > 0f)
         {
             is_fire1_pressed = true;
-            GameObject new_tatekan = Instantiate(TatekanBig);
-            new_tatekan.transform.position = SpawnTargets[spawn_idx].transform.position;
-            spawn_idx++;
-            if(spawn_idx >= SpawnTargets.Length)
+            if (!TatekanMController.IsFull())
             {
-                spawn_idx = 0;
+                GameObject new_tatekan = Instantiate(TatekanBig);
+                new_tatekan.transform.position = SpawnTargets[spawn_idx].transform.position;
+                spawn_idx++;
+                if (spawn_idx >= SpawnTargets.Length)
+                {
+                    spawn_idx = 0;
+                }
+                TatekanMController.IncreaseTatekan();
             }
         }
         if(Input.GetAxis("Fire1") <= 0f)

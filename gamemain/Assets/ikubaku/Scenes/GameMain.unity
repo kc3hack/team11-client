@@ -169,6 +169,47 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &389672225
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 389672227}
+  - component: {fileID: 389672226}
+  m_Layer: 0
+  m_Name: TatekanManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &389672226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 389672225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a96376cfa80494c9a4a0fb367e20b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NTatekanMax: 5
+--- !u!4 &389672227
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 389672225}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.3264618, y: -2.7573042, z: -6.233976}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &406782935
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,6 +244,7 @@ MonoBehaviour:
   - {fileID: 1651587019}
   - {fileID: 228332519}
   - {fileID: 191350218}
+  TatekanMController: {fileID: 389672226}
 --- !u!4 &406782937
 Transform:
   m_ObjectHideFlags: 0
