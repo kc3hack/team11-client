@@ -238,6 +238,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TatekanBig: {fileID: 1824304889872966, guid: d5fc80f9b1d0540c9a73b936f82c632f, type: 2}
+  TatekanMiddle: {fileID: 1824304889872966, guid: d5fc80f9b1d0540c9a73b936f82c632f,
+    type: 2}
+  TatekanSmall: {fileID: 1824304889872966, guid: d5fc80f9b1d0540c9a73b936f82c632f,
+    type: 2}
   SpawnTargets:
   - {fileID: 2023668486}
   - {fileID: 1306689253}
