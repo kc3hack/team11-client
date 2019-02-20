@@ -12,6 +12,8 @@ public class TatekanController : MonoBehaviour, IPointerClickHandler {
     private InputController2P ic2;
     private ScoreController sc;
 
+    private List<PersonController> people;
+
     public void OnPointerClick(PointerEventData eventData)
     {
         ic2.CommenceRemoval(this);
@@ -24,6 +26,8 @@ public class TatekanController : MonoBehaviour, IPointerClickHandler {
 
         var sm = GameObject.Find("ScoreManager");
         sc = sm.GetComponent<ScoreController>();
+
+        people = new List<PersonController>();
     }
 
     void Update()
@@ -37,6 +41,10 @@ public class TatekanController : MonoBehaviour, IPointerClickHandler {
 
         if (is_removed)
         {
+            foreach(var p in people)
+            {
+                p.SetToRemoved();
+            }
             sc.DecreaseTatekan();
             Destroy(gameObject);
         }
@@ -45,5 +53,10 @@ public class TatekanController : MonoBehaviour, IPointerClickHandler {
     public void SetDamagePerFrame(float d)
     {
         damage_per_frame = d;
+    }
+
+    public void AddPerson(PersonController p)
+    {
+        people.Add(p);
     }
 }

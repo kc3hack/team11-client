@@ -5,6 +5,8 @@ using UnityEngine;
 public class InputController2P : MonoBehaviour {
     public ButtonController[] Buttons;
     public float[] CooldownCounts;
+    public GameObject PersonEffect;
+    public GameObject PersonSpawnTarget;
 
     private int n_personnel = 0;
     private int selected_idx = -1;
@@ -55,6 +57,15 @@ public class InputController2P : MonoBehaviour {
         {
             // ダメージのセット
             sender.SetDamagePerFrame(n_personnel);
+            // エフェクト追加
+            for(int i=0; i<n_personnel; i++)
+            {
+                var p = Instantiate(PersonEffect);
+                p.transform.position = PersonSpawnTarget.transform.position;
+                var ctrl = p.GetComponent<PersonController>();
+                ctrl.SetTarget(sender.gameObject);
+                sender.AddPerson(ctrl);
+            }
             // 選択解除とクールダウン開始
             Buttons[selected_idx].ChangeToOnCooldown();
             cnt_cooldown[selected_idx] = CooldownCounts[selected_idx];
