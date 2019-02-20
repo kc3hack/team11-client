@@ -17,6 +17,8 @@ public class TatekanSpawnerController : MonoBehaviour {
     public GameObject[] SpawnTargets;
     public float SpawnSpreadRange = 1f;
 
+    public ScoreController MainScoreController;
+
     private GameObject TatekanBig;
     private GameObject TatekanMiddle;
     private GameObject TatekanSmall;
@@ -54,6 +56,7 @@ public class TatekanSpawnerController : MonoBehaviour {
 
                 GameObject new_tatekan = Instantiate(TatekanBig);
                 new_tatekan.transform.position = SpawnTargets[spawn_idx].transform.position + ofs_spread;
+                MainScoreController.IncreaseTatekan();
                 spawn_idx++;
                 if (spawn_idx >= SpawnTargets.Length)
                 {
@@ -79,6 +82,7 @@ public class TatekanSpawnerController : MonoBehaviour {
 
                 GameObject new_tatekan = Instantiate(TatekanMiddle);
                 new_tatekan.transform.position = SpawnTargets[spawn_idx].transform.position + ofs_spread;
+                MainScoreController.IncreaseTatekan();
                 spawn_idx++;
                 if (spawn_idx >= SpawnTargets.Length)
                 {
@@ -104,6 +108,7 @@ public class TatekanSpawnerController : MonoBehaviour {
 
                 GameObject new_tatekan = Instantiate(TatekanSmall);
                 new_tatekan.transform.position = SpawnTargets[spawn_idx].transform.position + ofs_spread;
+                MainScoreController.IncreaseTatekan();
                 spawn_idx++;
                 if (spawn_idx >= SpawnTargets.Length)
                 {

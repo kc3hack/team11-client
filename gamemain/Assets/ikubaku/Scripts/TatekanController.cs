@@ -4,17 +4,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class TatekanController : MonoBehaviour, IPointerClickHandler {
-    public int InitialScore = 250;
-    public int ScorePerFrame = 1;
-
     public float health = 120f;
 
-    private ScoreController1P sc1;
-    private ScoreController2P sc2;
     private float damage_per_frame = 0f;
     private bool is_removed = false;
 
     private InputController2P ic2;
+    private ScoreController sc;
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -23,15 +19,11 @@ public class TatekanController : MonoBehaviour, IPointerClickHandler {
 
     void Start()
     {
-        var sm = GameObject.Find("ScoreManager1P");
-        sc1 = sm.GetComponent<ScoreController1P>();
-        sc1.AddScore(InitialScore);
-
-        var sm2 = GameObject.Find("ScoreManager2P");
-        sc2 = sm2.GetComponent<ScoreController2P>();
-
         var im2 = GameObject.Find("2PInputManager");
         ic2 = im2.GetComponent<InputController2P>();
+
+        var sm = GameObject.Find("ScoreManager");
+        sc = sm.GetComponent<ScoreController>();
     }
 
     void Update()
@@ -42,15 +34,11 @@ public class TatekanController : MonoBehaviour, IPointerClickHandler {
         {
             is_removed = true;
         }
+
         if (is_removed)
         {
-            // stub
-            sc2.AddScore(400);
+            sc.DecreaseTatekan();
             Destroy(gameObject);
-        }
-        else
-        {
-            sc1.AddScore(ScorePerFrame);
         }
     }
 
