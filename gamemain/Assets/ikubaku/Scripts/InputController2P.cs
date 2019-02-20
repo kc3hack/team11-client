@@ -6,8 +6,6 @@ public class InputController2P : MonoBehaviour {
     public ButtonController[] Buttons;
     public float[] CooldownCounts;
 
-    public UnityEngine.UI.Text debug_text;
-
     private int n_personnel = 0;
     private int selected_idx = -1;
     private float[] cnt_cooldown;
@@ -22,7 +20,6 @@ public class InputController2P : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        debug_text.text = n_personnel.ToString();
 		for(int i=0; i<cnt_cooldown.Length; i++)
         {
             if(cnt_cooldown[i] > 0f)
@@ -49,6 +46,20 @@ public class InputController2P : MonoBehaviour {
             selected_idx = idx;
 
             n_personnel = n;
+        }
+    }
+
+    public void CommenceRemoval(TatekanController sender)
+    {
+        if (n_personnel > 0)
+        {
+            // ダメージのセット
+            sender.SetDamagePerFrame(n_personnel);
+            // 選択解除とクールダウン開始
+            Buttons[selected_idx].ChangeToOnCooldown();
+            cnt_cooldown[selected_idx] = CooldownCounts[selected_idx];
+            selected_idx = -1;
+            n_personnel = 0;
         }
     }
 }
