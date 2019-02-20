@@ -1054,6 +1054,7 @@ MonoBehaviour:
   ScoreThreshold: 3
   Score1PText: {fileID: 1332154452}
   Score2PText: {fileID: 1474671679}
+  TimeManager: {fileID: 1378153926}
 --- !u!4 &1539204664
 Transform:
   m_ObjectHideFlags: 0

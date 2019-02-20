@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b8bfe2b78c8114896fac6c8b04d117, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ServerURL: https://virtserver.swaggerhub.com/gammaaex/kc3-team11/1.0.0/scores
+  ServerURL: http://34.85.20.199/scores
   StudentNameTexts:
   - {fileID: 1591423763}
   - {fileID: 1954335317}
