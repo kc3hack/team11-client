@@ -9,6 +9,8 @@ public class ScoreController : MonoBehaviour {
     public UnityEngine.UI.Text Score1PText;
     public UnityEngine.UI.Text Score2PText;
 
+    public TimeController TimeManager;
+
     private int n_tatekans = 0;
     private float score_1p = 0f;
     private float score_2p = 0f;
@@ -21,13 +23,17 @@ public class ScoreController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         // このフレームのスコアを計算
-        var d = n_tatekans - ScoreThreshold;
-        if(d < 0)
+        if (TimeManager.IsStarted())
         {
-            score_2p += ScorePerExtraTatekan * -d * Time.deltaTime;
-        } else if(d > 0)
-        {
-            score_1p += ScorePerExtraTatekan * d * Time.deltaTime;
+            var d = n_tatekans - ScoreThreshold;
+            if (d < 0)
+            {
+                score_2p += ScorePerExtraTatekan * -d * Time.deltaTime;
+            }
+            else if (d > 0)
+            {
+                score_1p += ScorePerExtraTatekan * d * Time.deltaTime;
+            }
         }
 
         // 表示
