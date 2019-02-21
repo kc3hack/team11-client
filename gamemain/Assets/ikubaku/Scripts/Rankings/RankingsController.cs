@@ -13,7 +13,9 @@ public class RankingsController : MonoBehaviour {
     public UnityEngine.UI.Text[] AdminNameTexts;
     public UnityEngine.UI.Text[] AdminScoreTexts;
 
-    private bool is_upload_ok = false;
+    // 0: not ready, >0: number of successful operations
+    private int upload_status = 0;
+    private int acquire_status = 0;
     private RankingsResponse res_s;
     private RankingsResponse res_a;
 	// Use this for initialization
@@ -28,7 +30,7 @@ public class RankingsController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 
     IEnumerator UploadScoreForStudent()
@@ -47,10 +49,11 @@ public class RankingsController : MonoBehaviour {
         if(q.isNetworkError || q.isHttpError)
         {
             Debug.LogError(q.error);
+            StudentNameTexts[0].text = "通信エラー発生(送信)";
         } else
         {
             Debug.Log(q.responseCode);
-            is_upload_ok = true;
+            upload_status++;
         }
     }
     IEnumerator UploadScoreForAdmin()
@@ -69,11 +72,12 @@ public class RankingsController : MonoBehaviour {
         if (q.isNetworkError || q.isHttpError)
         {
             Debug.LogError(q.error);
+            StudentNameTexts[0].text = "通信エラー発生(送信)";
         }
         else
         {
             Debug.Log(q.responseCode);
-            is_upload_ok = true;
+            upload_status++;
         }
     }
 
@@ -88,6 +92,7 @@ public class RankingsController : MonoBehaviour {
         if(q.isNetworkError || q.isHttpError)
         {
             Debug.LogError(q.error);
+            StudentNameTexts[0].text = "通信エラー発生(受信)";
         } else
         {
             Debug.Log(q.downloadHandler.text);
@@ -100,6 +105,7 @@ public class RankingsController : MonoBehaviour {
                 StudentNameTexts[i].text = (i + 1).ToString() + ": " + se.username;
                 StudentScoreTexts[i].text = se.value.ToString();
             }
+            acquire_status++;
         }
     }
     IEnumerator AcquireScoreForAdmin()
@@ -113,6 +119,7 @@ public class RankingsController : MonoBehaviour {
         if (q.isNetworkError || q.isHttpError)
         {
             Debug.LogError(q.error);
+            StudentNameTexts[0].text = "通信エラー発生(受信)";
         }
         else
         {
@@ -126,6 +133,7 @@ public class RankingsController : MonoBehaviour {
                 AdminNameTexts[i].text = (i + 1).ToString() + ": " + se.username;
                 AdminScoreTexts[i].text = se.value.ToString();
             }
+            acquire_status++;
         }
     }
 }

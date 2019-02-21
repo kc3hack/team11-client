@@ -8,7 +8,7 @@ namespace Assets.ikubaku.Scripts.Rankings
     class RankingsResponse
     {
         public ScoreEntry[] data { get; set; }
-        public RankingsLinks links { get; set; }
-        public RankingsMeta meta { get; set; }
+        //public RankingsLinks links { get; set; }
+        //public RankingsMeta meta { get; set; }
     }
 }
