@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class RankingsController : MonoBehaviour {
     public string ServerURL;
@@ -27,6 +28,7 @@ public class RankingsController : MonoBehaviour {
     private RankingsResponse res_a;
 	// Use this for initialization
 	void Start () {
+        Time.timeScale = 1f;
         res_s = new RankingsResponse();
         res_a = new RankingsResponse();
         StartCoroutine(UploadScoreForStudent());
@@ -146,5 +148,10 @@ public class RankingsController : MonoBehaviour {
             }
             acquire_status++;
         }
+    }
+
+    void GoToTitle()
+    {
+        SceneManager.LoadScene("Title");
     }
 }
