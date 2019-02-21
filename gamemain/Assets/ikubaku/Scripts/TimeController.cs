@@ -16,6 +16,8 @@ public class TimeController : MonoBehaviour {
     private float cnt_game;
     private bool is_started = false;
 
+    private AudioSource aud;
+
     string GetTimeString()
     {
         if(cnt_game <= 0f)
@@ -33,6 +35,7 @@ public class TimeController : MonoBehaviour {
 	void Start () {
         cnt_game = GameDuration;
         TimeText.text = GetTimeString();
+        aud = GetComponent<AudioSource>();
         StartCoroutine(StartCountDown());
         Time.timeScale = 0f;
     }
@@ -47,6 +50,7 @@ public class TimeController : MonoBehaviour {
         if(cnt_game <= 0f)
         {
             CountText.text = "Time's Up!";
+            aud.Play();
             BGMManager.SendMessage("StopBGM");
             StaticVars.LocalStudentScore = MainScoreController.GetScore1P();
             StaticVars.LocalAdminScore = MainScoreController.GetScore2P();
@@ -66,6 +70,7 @@ public class TimeController : MonoBehaviour {
         Time.timeScale = 1f;
         is_started = true;
         CountText.text = "Go!";
+        aud.Play();
         BGMManager.SendMessage("StartBGM");
         StartCoroutine(StartHideCount());
     }
