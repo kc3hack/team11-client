@@ -34,7 +34,7 @@ public class TimeController : MonoBehaviour {
         TimeText.text = GetTimeString();
         StartCoroutine(StartCountDown());
         Time.timeScale = 0f;
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
