@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class StaticVars {
     public static string LocalStudentName;
-    public static int LocalStudentScore;
+    public static float LocalStudentScore;
     public static string LocalAdminName;
-    public static int LocalAdminScore;
+    public static float LocalAdminScore;
 }
