@@ -13,6 +13,13 @@ public class RankingsController : MonoBehaviour {
     public UnityEngine.UI.Text[] AdminNameTexts;
     public UnityEngine.UI.Text[] AdminScoreTexts;
 
+    public UnityEngine.UI.Text StudentNameTextLocal;
+    public UnityEngine.UI.Text StudentScoreTextLocal;
+    public UnityEngine.UI.Text AdminNameTextLocal;
+    public UnityEngine.UI.Text AdminScoreTextLocal;
+
+    private bool is_local_score_shown = false;
+
     // 0: not ready, >0: number of successful operations
     private int upload_status = 0;
     private int acquire_status = 0;
@@ -30,8 +37,14 @@ public class RankingsController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-	}
+        if (!is_local_score_shown && upload_status >= 2 && acquire_status >= 2)
+        {
+            StudentNameTextLocal.text = "YOU: " + "ikubaku";
+            StudentScoreTextLocal.text = 1200.ToString();
+            AdminNameTextLocal.text = "YOU: " + "ikubaku";
+            AdminScoreTextLocal.text = 1200.ToString();
+        }
+    }
 
     IEnumerator UploadScoreForStudent()
     {
