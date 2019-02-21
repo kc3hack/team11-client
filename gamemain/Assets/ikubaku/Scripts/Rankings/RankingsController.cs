@@ -33,16 +33,16 @@ public class RankingsController : MonoBehaviour {
         StartCoroutine(UploadScoreForAdmin());
         StartCoroutine(AcquireScoreForStudent());
         StartCoroutine(AcquireScoreForAdmin());
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
         if (!is_local_score_shown && upload_status >= 2 && acquire_status >= 2)
         {
-            StudentNameTextLocal.text = "YOU: " + "ikubaku";
-            StudentScoreTextLocal.text = 1200.ToString();
-            AdminNameTextLocal.text = "YOU: " + "ikubaku";
-            AdminScoreTextLocal.text = 1200.ToString();
+            StudentNameTextLocal.text = "YOU: " + StaticVars.LocalStudentName;
+            StudentScoreTextLocal.text = StaticVars.LocalStudentScore.ToString();
+            AdminNameTextLocal.text = "YOU: " + StaticVars.LocalAdminName;
+            AdminScoreTextLocal.text = StaticVars.LocalAdminScore.ToString();
         }
     }
 
@@ -50,8 +50,7 @@ public class RankingsController : MonoBehaviour {
     {
         var q = new UnityWebRequest(ServerURL + "?user_type=student");
         q.method = UnityWebRequest.kHttpVerbPOST;
-        // stub
-        var stub_entry = new ScoreEntry() { username = "ikubaku", value = 1200, user_type = "student" };
+        var stub_entry = new ScoreEntry() { username = StaticVars.LocalStudentName, value = StaticVars.LocalStudentScore, user_type = "student" };
         var qs = JsonConvert.SerializeObject(stub_entry);
         var uh = new UploadHandlerRaw(Encoding.ASCII.GetBytes(qs));
         uh.contentType = "application/json";
@@ -73,8 +72,7 @@ public class RankingsController : MonoBehaviour {
     {
         var q = new UnityWebRequest(ServerURL + "?user_type=admin");
         q.method = UnityWebRequest.kHttpVerbPOST;
-        // stub
-        var stub_entry = new ScoreEntry() { username = "ikubaku", value = 1200, user_type = "admin" };
+        var stub_entry = new ScoreEntry() { username = StaticVars.LocalAdminName, value = StaticVars.LocalAdminScore, user_type = "admin" };
         var qs = JsonConvert.SerializeObject(stub_entry);
         var uh = new UploadHandlerRaw(Encoding.ASCII.GetBytes(qs));
         uh.contentType = "application/json";

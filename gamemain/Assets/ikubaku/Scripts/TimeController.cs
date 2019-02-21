@@ -10,6 +10,8 @@ public class TimeController : MonoBehaviour {
     public UnityEngine.UI.Text CountText;
     public UnityEngine.UI.Text TimeText;
 
+    public ScoreController MainScoreController;
+
     private float cnt_game;
     private bool is_started = false;
 
@@ -44,6 +46,8 @@ public class TimeController : MonoBehaviour {
         if(cnt_game <= 0f)
         {
             CountText.text = "Time's Up!";
+            StaticVars.LocalStudentScore = MainScoreController.GetScore1P();
+            StaticVars.LocalAdminScore = MainScoreController.GetScore2P();
             StartCoroutine(StartGoToRankings());
             Time.timeScale = 0f;
         }

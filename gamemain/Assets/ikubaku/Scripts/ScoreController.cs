@@ -52,4 +52,13 @@ public class ScoreController : MonoBehaviour {
             n_tatekans--;
         }
     }
+
+    public int GetScore1P()
+    {
+        return Mathf.FloorToInt(score_1p);
+    }
+    public int GetScore2P()
+    {
+        return Mathf.FloorToInt(score_2p);
+    }
 }

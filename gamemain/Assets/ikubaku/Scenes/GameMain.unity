@@ -948,6 +948,7 @@ MonoBehaviour:
   GameDuration: 180
   CountText: {fileID: 380113063}
   TimeText: {fileID: 1776817802}
+  MainScoreController: {fileID: 1539204663}
 --- !u!1 &1474671677
 GameObject:
   m_ObjectHideFlags: 0
