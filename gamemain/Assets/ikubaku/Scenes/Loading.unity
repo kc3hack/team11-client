@@ -277,6 +277,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114306330750146884, guid: 7021a5093d74042a1af720e1e8ffc5e1,
+        type: 2}
+      propertyPath: ServerURL
+      value: http://34.85.20.199/tatekans
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7021a5093d74042a1af720e1e8ffc5e1, type: 2}
   m_IsPrefabAsset: 0
