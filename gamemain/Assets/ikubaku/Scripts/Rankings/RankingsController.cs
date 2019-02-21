@@ -3,11 +3,13 @@ using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using Assets.ikubaku.Scripts.Title;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
-public class RankingsController : MonoBehaviour {
+public class RankingsController : MonoBehaviour
+{
     public string ServerURL;
     public UnityEngine.UI.Text[] StudentNameTexts;
     public UnityEngine.UI.Text[] StudentScoreTexts;
@@ -25,9 +27,12 @@ public class RankingsController : MonoBehaviour {
     private int upload_status = 0;
     private int acquire_status = 0;
     private RankingsResponse res_s;
+
     private RankingsResponse res_a;
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start()
+    {
         Time.timeScale = 1f;
         res_s = new RankingsResponse();
         res_a = new RankingsResponse();
@@ -36,9 +41,10 @@ public class RankingsController : MonoBehaviour {
         StartCoroutine(AcquireScoreForStudent());
         StartCoroutine(AcquireScoreForAdmin());
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         if (!is_local_score_shown && upload_status >= 2 && acquire_status >= 2)
         {
             StudentNameTextLocal.text = "YOU: " + StaticVars.LocalStudentName;
@@ -50,9 +56,14 @@ public class RankingsController : MonoBehaviour {
 
     IEnumerator UploadScoreForStudent()
     {
-        var q = new UnityWebRequest(ServerURL + "?user_type=student");
+        var q = new UnityWebRequest(ServerURL);
         q.method = UnityWebRequest.kHttpVerbPOST;
-        var stub_entry = new ScoreEntry() { username = StaticVars.LocalStudentName, value = StaticVars.LocalStudentScore, user_type = "student" };
+        var stub_entry = new ScoreEntry
+        {
+            username = UserStore.StudentName,
+            value = StaticVars.LocalStudentScore,
+            user_type = "student"
+        };
         var qs = JsonConvert.SerializeObject(stub_entry);
         var uh = new UploadHandlerRaw(Encoding.ASCII.GetBytes(qs));
         uh.contentType = "application/json";
@@ -60,21 +71,28 @@ public class RankingsController : MonoBehaviour {
 
         yield return q.SendWebRequest();
 
-        if(q.isNetworkError || q.isHttpError)
+        if (q.isNetworkError || q.isHttpError)
         {
             Debug.LogError(q.error);
             StudentNameTexts[0].text = "通信エラー発生(送信)";
-        } else
+        }
+        else
         {
-            Debug.Log(q.responseCode);
+//            Debug.Log(q.responseCode);
             upload_status++;
         }
     }
+
     IEnumerator UploadScoreForAdmin()
     {
-        var q = new UnityWebRequest(ServerURL + "?user_type=admin");
+        var q = new UnityWebRequest(ServerURL);
         q.method = UnityWebRequest.kHttpVerbPOST;
-        var stub_entry = new ScoreEntry() { username = StaticVars.LocalAdminName, value = StaticVars.LocalAdminScore, user_type = "admin" };
+        var stub_entry = new ScoreEntry
+        {
+            username = UserStore.AdminName,
+            value = StaticVars.LocalAdminScore,
+            user_type = "admin"
+        };
         var qs = JsonConvert.SerializeObject(stub_entry);
         var uh = new UploadHandlerRaw(Encoding.ASCII.GetBytes(qs));
         uh.contentType = "application/json";
@@ -89,28 +107,29 @@ public class RankingsController : MonoBehaviour {
         }
         else
         {
-            Debug.Log(q.responseCode);
+//            Debug.Log(q.responseCode);
             upload_status++;
         }
     }
 
     IEnumerator AcquireScoreForStudent()
     {
-        var q = new UnityWebRequest(ServerURL);
+        var q = new UnityWebRequest(ServerURL + "?user_type=student");
         q.method = UnityWebRequest.kHttpVerbGET;
         q.downloadHandler = new DownloadHandlerBuffer();
 
         yield return q.SendWebRequest();
 
-        if(q.isNetworkError || q.isHttpError)
+        if (q.isNetworkError || q.isHttpError)
         {
             Debug.LogError(q.error);
             StudentNameTexts[0].text = "通信エラー発生(受信)";
-        } else
+        }
+        else
         {
-            Debug.Log(q.downloadHandler.text);
+//            Debug.Log(q.downloadHandler.text);
             JsonConvert.PopulateObject(q.downloadHandler.text, res_s);
-            for(int i=0; i<res_s.data.Length; i++)
+            for (int i = 0; i < res_s.data.Length; i++)
             {
                 if (i >= StudentScoreTexts.Length) break;
 
@@ -118,12 +137,14 @@ public class RankingsController : MonoBehaviour {
                 StudentNameTexts[i].text = (i + 1).ToString() + ": " + se.username;
                 StudentScoreTexts[i].text = se.value.ToString();
             }
+
             acquire_status++;
         }
     }
+
     IEnumerator AcquireScoreForAdmin()
     {
-        var q = new UnityWebRequest(ServerURL);
+        var q = new UnityWebRequest(ServerURL + "?user_type=admin");
         q.method = UnityWebRequest.kHttpVerbGET;
         q.downloadHandler = new DownloadHandlerBuffer();
 
@@ -136,7 +157,7 @@ public class RankingsController : MonoBehaviour {
         }
         else
         {
-            Debug.Log(q.downloadHandler.text);
+//            Debug.Log(q.downloadHandler.text);
             JsonConvert.PopulateObject(q.downloadHandler.text, res_a);
             for (int i = 0; i < res_a.data.Length; i++)
             {
@@ -146,6 +167,7 @@ public class RankingsController : MonoBehaviour {
                 AdminNameTexts[i].text = (i + 1).ToString() + ": " + se.username;
                 AdminScoreTexts[i].text = se.value.ToString();
             }
+
             acquire_status++;
         }
     }

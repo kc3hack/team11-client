@@ -8,7 +8,7 @@ namespace Assets.ikubaku.Scripts.Rankings
     class ScoreEntry
     {
         public string username { get; set; }
-        public int value { get; set; }
+        public float value { get; set; }
         public string user_type { get; set; }
     }
 }
