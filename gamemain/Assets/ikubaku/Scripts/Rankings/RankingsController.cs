@@ -33,6 +33,16 @@ public class RankingsController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        StaticVars.LocalStudentName = UserStore.StudentName;
+        StaticVars.LocalAdminName = UserStore.AdminName;
+        if(StaticVars.LocalStudentName == "")
+        {
+            StaticVars.LocalStudentName = "noname";
+        }
+        if(StaticVars.LocalAdminName == "")
+        {
+            StaticVars.LocalAdminName = "noname";
+        }
         Time.timeScale = 1f;
         res_s = new RankingsResponse();
         res_a = new RankingsResponse();
@@ -45,12 +55,13 @@ public class RankingsController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!is_local_score_shown && upload_status >= 2 && acquire_status >= 2)
+        if (!is_local_score_shown)
         {
             StudentNameTextLocal.text = "YOU: " + StaticVars.LocalStudentName;
             StudentScoreTextLocal.text = StaticVars.LocalStudentScore.ToString();
             AdminNameTextLocal.text = "YOU: " + StaticVars.LocalAdminName;
             AdminScoreTextLocal.text = StaticVars.LocalAdminScore.ToString();
+            is_local_score_shown = true;
         }
     }
 
