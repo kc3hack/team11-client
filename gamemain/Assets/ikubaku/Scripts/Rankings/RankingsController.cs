@@ -83,7 +83,7 @@ public class RankingsController : MonoBehaviour {
         if (q.isNetworkError || q.isHttpError)
         {
             Debug.LogError(q.error);
-            StudentNameTexts[0].text = "通信エラー発生(送信)";
+            AdminNameTexts[0].text = "通信エラー発生(送信)";
         }
         else
         {
@@ -130,7 +130,7 @@ public class RankingsController : MonoBehaviour {
         if (q.isNetworkError || q.isHttpError)
         {
             Debug.LogError(q.error);
-            StudentNameTexts[0].text = "通信エラー発生(受信)";
+            AdminNameTexts[0].text = "通信エラー発生(受信)";
         }
         else
         {
