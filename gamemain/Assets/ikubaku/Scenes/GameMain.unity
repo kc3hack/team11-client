@@ -311,18 +311,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14d5417f11d564ab59acbb48e069811e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TatekansBig:
-  - {fileID: 1824304889872966, guid: d5fc80f9b1d0540c9a73b936f82c632f, type: 2}
-  - {fileID: 1824304889872966, guid: d5fc80f9b1d0540c9a73b936f82c632f, type: 2}
-  - {fileID: 1824304889872966, guid: d5fc80f9b1d0540c9a73b936f82c632f, type: 2}
-  TatekansMiddle:
-  - {fileID: 1824304889872966, guid: d5fc80f9b1d0540c9a73b936f82c632f, type: 2}
-  - {fileID: 1824304889872966, guid: d5fc80f9b1d0540c9a73b936f82c632f, type: 2}
-  - {fileID: 1824304889872966, guid: d5fc80f9b1d0540c9a73b936f82c632f, type: 2}
-  TatekansSmall:
-  - {fileID: 1824304889872966, guid: d5fc80f9b1d0540c9a73b936f82c632f, type: 2}
-  - {fileID: 1824304889872966, guid: d5fc80f9b1d0540c9a73b936f82c632f, type: 2}
-  - {fileID: 1824304889872966, guid: d5fc80f9b1d0540c9a73b936f82c632f, type: 2}
+  TatekansBig: []
+  TatekansMiddle: []
+  TatekansSmall: []
+  TatekanPrefab: {fileID: 1824304889872966, guid: d5fc80f9b1d0540c9a73b936f82c632f,
+    type: 2}
   BigCooldown: 10
   MiddleCooldown: 5
   SmallCooldown: 3
@@ -1701,7 +1694,9 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114968836091322502, guid: 335db781a6ef14e61b4741211e76d809, type: 2}
+    - {fileID: 114169545405197492, guid: 335db781a6ef14e61b4741211e76d809, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 335db781a6ef14e61b4741211e76d809, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &2019191785
