@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
+  - enabled: 1
+    path: Assets/ikubaku/Scenes/Title.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/ikubaku/Scenes/Loading.unity
+    guid: b58d8312a83d34f2fa95044da26849ef
   - enabled: 1
     path: Assets/ikubaku/Scenes/GameMain.unity
     guid: 6d8dcec5444694b469ccfdbb4b18e26c
